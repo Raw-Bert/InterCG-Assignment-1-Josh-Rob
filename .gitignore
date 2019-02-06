@@ -30,4 +30,13 @@
 *.out
 *.app
 
+
+#Stuff Josh Addded
 .vs/
+*.tlog
+*.pdb
+*.ilk
+*.idb
+*.pdb
+*.ini
+*.lastbuildstate
