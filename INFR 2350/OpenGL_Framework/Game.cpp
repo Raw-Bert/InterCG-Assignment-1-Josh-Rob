@@ -88,7 +88,7 @@ void Game::initializeGame()
 	Texture* texEarthEmissive = new Texture("earthEmissive.png");
 	Texture* texEarthSpecular = new Texture("earthSpec.png");
 	Texture* texRings = new Texture("saturnRings.png");
-	Texture* texMoonAlbedo = new Texture("8k_moon.jpg");
+	//Texture* texMoonAlbedo = new Texture("8k_moon.jpg");
 	Texture* texJupiterAlbedo = new Texture("jupiter.png");
 	Texture* texSaturnAlbedo = new Texture("8k_saturn.jpg");
 	Texture* texCheckerboard = new Texture("checkboard.png");
@@ -102,25 +102,25 @@ void Game::initializeGame()
 	std::vector<Texture*> texEarth = { texEarthAlbedo, texEarthEmissive, texEarthSpecular };
 	std::vector<Texture*> texCheckboards { texCheckerboard, texBlack, texWhite };
 	std::vector<Texture*> texSun = { texBlack, texYellow, texBlack };
-	std::vector<Texture*> texMoon = { texMoonAlbedo, texBlack, texBlack };
+	//std::vector<Texture*> texMoon = { texMoonAlbedo, texBlack, texBlack };
 	std::vector<Texture*> texJupiter = { texJupiterAlbedo, texBlack, texBlack };
 	std::vector<Texture*> texPlanet = { texWhite, texBlack, texBlack };
 	std::vector<Texture*> texSaturn = { texSaturnAlbedo, texBlack, texBlack };
 	std::vector<Texture*> texSaturnRings = { texRings, texBlack, texBlack };
 	std::vector<Texture*> texStan = { texStanAlbedo, texStanEmissive, texBlack };
-	std::vector<Texture*> texTV = { texBlack, &framebufferTV._Color._Tex[0] , texBlack };
+	//std::vector<Texture*> texTV = { texBlack, &framebufferTV._Color._Tex[0] , texBlack };
 
 	goStan = GameObject(&meshStan, texStan);
 	goSun = GameObject(&meshSphere, texSun);
 	goEarth = GameObject(&meshSphere, texEarth);
 	goEarthPlane = GameObject(&meshPlane, texCheckboards);
-	goMoon = GameObject(&meshSphere, texMoon);
+	//goMoon = GameObject(&meshSphere, texMoon);
 	goJupiter = GameObject(&meshSphere, texJupiter);
-	goJupiterMoon[0] = GameObject(&meshSphere, texMoon);
-	goJupiterMoon[1] = GameObject(&meshSphere, texMoon);
+	//goJupiterMoon[0] = GameObject(&meshSphere, texMoon);
+	//goJupiterMoon[1] = GameObject(&meshSphere, texMoon);
 	goSaturn = GameObject(&meshSphere, texSaturn);
 	goSaturnRings = GameObject(&meshPlane, texSaturnRings);
-	goTV = GameObject(&meshPlane, texTV);
+	//goTV = GameObject(&meshPlane, texTV);
 
 	std::vector<std::string> skyboxTex;
 	skyboxTex.push_back("sky2/sky_c00.bmp");
@@ -137,15 +137,15 @@ void Game::initializeGame()
 	ResourceManager::addEntity(&goSun);
 	ResourceManager::addEntity(&goEarth);
 	ResourceManager::addEntity(&goEarthPlane);
-	ResourceManager::addEntity(&goMoon);
+	//ResourceManager::addEntity(&goMoon);
 	ResourceManager::addEntity(&goJupiter);
-	ResourceManager::addEntity(&goJupiterMoon[0]);
-	ResourceManager::addEntity(&goJupiterMoon[1]);
+	//ResourceManager::addEntity(&goJupiterMoon[0]);
+	//ResourceManager::addEntity(&goJupiterMoon[1]);
 	ResourceManager::addEntity(&goSaturn);
 	ResourceManager::addEntity(&goSaturnRings);
 	ResourceManager::addEntity(&camera);
 	ResourceManager::addEntity(&camera2);
-	ResourceManager::addEntity(&goTV);	
+	//ResourceManager::addEntity(&goTV);	
 
 	//goLight.setShaderProgram(&shaderPointLight);
 	//goLight.setMesh(&meshSphere);
@@ -155,10 +155,10 @@ void Game::initializeGame()
 	goSun.setLocalPos(vec3(4, 5, 0));
 	goEarth.setLocalPos(vec3(-2, 0, 0));
 	goEarthPlane.setLocalPos(vec3(0, -5.0f, -50));
-	goMoon.setLocalPos(vec3(-1, 0, -1));
+	//goMoon.setLocalPos(vec3(-1, 0, -1));
 	goJupiter.setLocalPos(vec3(-3, 0, 4));
-	goJupiterMoon[0].setLocalPos(vec3(-4, 0, 5));
-	goJupiterMoon[1].setLocalPos(vec3(-2, 0, 3));
+	//goJupiterMoon[0].setLocalPos(vec3(-4, 0, 5));
+	//goJupiterMoon[1].setLocalPos(vec3(-2, 0, 3));
 	goSaturn.setLocalPos(vec3(-2, 0, -3));
 	goSaturnRings.setLocalPos(vec3(-2, 0, -3));
 
@@ -169,38 +169,38 @@ void Game::initializeGame()
 	std::uniform_real_distribution<float> randomScale(0.5f, 4.0f);
 	std::default_random_engine generator(std::_Random_device());
 
-	for (int i = 0; i < 500; i++)
-	{
-		GameObject *object = new GameObject(&meshSphere, texMoon);
-		object->setLocalPos(vec3(randomPositionX(generator), randomPositionY(generator), randomPositionZ(generator)));
-		object->setScale(vec3(randomScale(generator)));
-		object->setLocalRot(vec3(randomRotation(generator), randomRotation(generator), randomRotation(generator)));
-		object->setShaderProgram(&shaderTexture);
-		ResourceManager::addEntity(object);
-		goPlanets.push_back(object);
-	}
+	//for (int i = 0; i < 500; i++)
+	//{
+	//	GameObject *object = new GameObject(&meshSphere, texMoon);
+	//	object->setLocalPos(vec3(randomPositionX(generator), randomPositionY(generator), randomPositionZ(generator)));
+	//	object->setScale(vec3(randomScale(generator)));
+	//	object->setLocalRot(vec3(randomRotation(generator), randomRotation(generator), randomRotation(generator)));
+	//	object->setShaderProgram(&shaderTexture);
+	//	ResourceManager::addEntity(object);
+	//	goPlanets.push_back(object);
+	//
 
 	goStan.setScale(2.0f);
 	goSun.setScale(1.50f);
 	goEarth.setScale(0.50f);
 	goEarthPlane.setScale(100.50f);
-	goMoon.setScale(0.25f);
+	//goMoon.setScale(0.25f);
 	goJupiter.setScale(1.00f);
-	goJupiterMoon[0].setScale(0.25f);
-	goJupiterMoon[1].setScale(0.20f);
+	//goJupiterMoon[0].setScale(0.25f);
+	//goJupiterMoon[1].setScale(0.20f);
 	goSaturn.setScale(1.0f);
 	goSaturnRings.setScale(2.0f);
 	goSaturnRings.setLocalRotZ(-20.0f);
 
-	goTV			.setShaderProgram(&shaderTexture);
+	//goTV			.setShaderProgram(&shaderTexture);
 	goStan			.setShaderProgram(&shaderTexture);
 	goSun			.setShaderProgram(&shaderTexture);
 	goEarth			.setShaderProgram(&shaderTexture);
 	goEarthPlane	.setShaderProgram(&shaderTexture);
-	goMoon			.setShaderProgram(&shaderTexture);
+	//goMoon			.setShaderProgram(&shaderTexture);
 	goJupiter		.setShaderProgram(&shaderTextureJupiter);
-	goJupiterMoon[0].setShaderProgram(&shaderTexture);
-	goJupiterMoon[1].setShaderProgram(&shaderTexture);
+	//goJupiterMoon[0].setShaderProgram(&shaderTexture);
+	//goJupiterMoon[1].setShaderProgram(&shaderTexture);
 	goSaturn		.setShaderProgram(&shaderTexture);
 	goSaturnRings	.setShaderProgram(&shaderTextureAlphaDiscard);
 	   	 
