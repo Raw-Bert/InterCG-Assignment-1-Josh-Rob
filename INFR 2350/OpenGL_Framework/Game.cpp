@@ -95,7 +95,7 @@ void Game::initializeGame()
 	Texture* texStanAlbedo = new Texture("stan_tex.png");
 	Texture* texStanEmissive = new Texture("stan_emit.png");
 
-	textureToonRamp.push_back(new Texture("tinyramp.png", false));
+	textureToonRamp.push_back(new Texture("TF2.JPG", false));
 	textureToonRamp[0]->setWrapParameters(GL_CLAMP_TO_EDGE);
 	textureToonRamp[0]->sendTexParameters();
 
