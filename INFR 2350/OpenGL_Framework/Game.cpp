@@ -204,6 +204,7 @@ void Game::initializeGame()
 	goSaturn		.setShaderProgram(&shaderTexture);
 	goSaturnRings	.setShaderProgram(&shaderTextureAlphaDiscard);
 	   	 
+	goSun.addChild(&goEarth);
 	// These Render flags can be set once at the start (No reason to waste time calling these functions every frame).
 	// Tells OpenGL to respect the depth of the scene. Fragments will not render when they are behind other geometry.
 	glEnable(GL_DEPTH_TEST); 
@@ -258,6 +259,13 @@ void Game::update()
 	{
 		cameraSpeedMult *= 0.5f;
 	}
+
+	posX = goStan.getLocalPos().x * cos(TotalGameTime) *3;
+	posY = goStan.getLocalPos().y * sin(TotalGameTime) / 2;
+	posZ = goStan.getLocalPos().z * sin(TotalGameTime);
+	goSun.setLocalPos(vec3(posX, posY,posZ));
+
+	//TODO: Rotate Earth, add more "Interesting stuff"
 
 	if (input.moveUp)
 	{

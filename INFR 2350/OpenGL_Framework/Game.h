@@ -107,6 +107,10 @@ private:
 
 	bool guiEnabled = true;
 
+	float posX;
+	float posY;
+	float posZ;
+
 	struct KeyInput
 	{
 		bool moveLeft = false;
