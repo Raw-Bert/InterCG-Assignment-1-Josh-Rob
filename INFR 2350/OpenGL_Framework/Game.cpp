@@ -56,6 +56,7 @@ void Game::initializeGame()
 	shaderSky.load("shaderSky.vert", "shaderSky.frag");
 	shaderPassthrough.load("PassThrough.vert", "PassThrough.frag");
 	shaderGrayscale.load("PassThrough.vert", "Post/GreyscalePost.frag");
+	shaderGrading.load("LUTShader.vert", "Post/ColorGradingPost.frag");
 
 	ResourceManager::Shaders.push_back(&shaderBasic);
 	ResourceManager::Shaders.push_back(&shaderTexture);

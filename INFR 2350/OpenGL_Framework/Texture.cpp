@@ -22,7 +22,7 @@ GLenum filterModes[] =
 
 struct RGB
 {
-	int r, g, b;
+	float r, g, b;
 
 };
 
@@ -86,7 +86,7 @@ bool Texture::loadLUT(const std::string file)
 	std::vector<RGB> LUT;
 	std::string LUTPath = ("../assets/CUBE/" + file);
 	std::ifstream LUTfile(LUTPath.c_str());
-	int LUTSize;
+	//int LUTSize;
 
 	while (!LUTfile.eof())
 	{
@@ -96,7 +96,7 @@ bool Texture::loadLUT(const std::string file)
 		if (LUTline.empty()) continue;
 
 		RGB line;
-		if (sscanf(LUTline.c_str(), "%f %f %f", &line.r, &line.g, &line.b) == 3) LUT.push_back(line);
+		if (sscanf_s(LUTline.c_str(), "%f %f %f", &line.r, &line.g, &line.b) == 3) LUT.push_back(line);
 			
 	}
 	glGenTextures(1,&this->_Handle);
@@ -109,7 +109,6 @@ bool Texture::loadLUT(const std::string file)
 	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, LUT.size(), LUT.size(), LUT.size(), 0, GL_RGB, GL_FLOAT, &LUT[0]);
 	glBindTexture(GL_TEXTURE_3D, 0);
 	glDisable(GL_TEXTURE_3D);
-
 
 	return true; 
 }

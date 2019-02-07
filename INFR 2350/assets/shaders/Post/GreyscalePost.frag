@@ -10,7 +10,6 @@ Copyright (C) 2015-2017 Stephen Thompson
 #version 420 //Version of OpenGL we're using. - 4.2
 
 uniform sampler2D uSceneTex; 
-
 uniform float uAmount = 1.0f;
 in vec2 texcoord;
 out vec4 outColor;

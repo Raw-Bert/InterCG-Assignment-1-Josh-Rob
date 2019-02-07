@@ -97,6 +97,7 @@ private:
 
 	ShaderProgram shaderPassthrough;
 	ShaderProgram shaderGrayscale;
+	ShaderProgram shaderGrading;
 
 	UniformBuffer uniformBufferTime;
 	UniformBuffer uniformBufferLightScene;
