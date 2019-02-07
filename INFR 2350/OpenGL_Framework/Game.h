@@ -73,13 +73,13 @@ private:
 	GameObject goSun;
 	GameObject goEarth;
 	GameObject goEarthPlane;
-	GameObject goMoon;
+	//GameObject goMoon;
 	GameObject goJupiter;
-	GameObject goJupiterMoon[2];
+	//GameObject goJupiterMoon[2];
 	GameObject goSaturn;
 	GameObject goSaturnRings;
 	GameObject goSkybox;
-	GameObject goTV;
+	//GameObject goTV;
 
 	GameObject goLight;
 
@@ -106,6 +106,10 @@ private:
 	std::vector<Texture*> textureToonRamp;
 
 	bool guiEnabled = true;
+
+	float posX;
+	float posY;
+	float posZ;
 
 	struct KeyInput
 	{

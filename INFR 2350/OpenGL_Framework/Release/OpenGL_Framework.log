@@ -1,0 +1,26 @@
+﻿  Camera.cpp
+  Framebuffer.cpp
+  Game.cpp
+  GameObject.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl.cpp
+  IO.cpp
+  Light.cpp
+  main.cpp
+  Mesh.cpp
+  ResourceManager.cpp
+  ShaderProgram.cpp
+  Texture.cpp
+  TextureCube.cpp
+  Timer.cpp
+  Transform.cpp
+  UI.cpp
+  UniformBuffer.cpp
+  Compiling...
+  VertexBufferObject.cpp
+  Generating code
+  All 2248 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  OpenGL_Framework.vcxproj -> D:\InterCG-Assignment-1-Josh-Rob\INFR 2350\Release\OpenGL_Framework.exe
