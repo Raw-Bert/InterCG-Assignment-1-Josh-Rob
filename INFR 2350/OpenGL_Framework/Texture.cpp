@@ -82,6 +82,7 @@ bool Texture::load(const std::string & file, bool mipmap)
 
 bool Texture::loadLUT(const std::string file)
 {
+	glEnable(GL_TEXTURE_3D);
 	std::vector<RGB> LUT;
 	std::string LUTPath = ("../assets/CUBE/" + file);
 	std::ifstream LUTfile(LUTPath.c_str());
@@ -98,6 +99,17 @@ bool Texture::loadLUT(const std::string file)
 		if (sscanf(LUTline.c_str(), "%f %f %f", &line.r, &line.g, &line.b) == 3) LUT.push_back(line);
 			
 	}
+	glGenTextures(1,&this->_Handle);
+	glBindTexture(GL_TEXTURE_3D, this->_Handle);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+	glTexImage3D(GL_TEXTURE_3D, 0, GL_RGB, LUT.size(), LUT.size(), LUT.size(), 0, GL_RGB, GL_FLOAT, &LUT[0]);
+	glBindTexture(GL_TEXTURE_3D, 0);
+	glDisable(GL_TEXTURE_3D);
+
 
 	return true; 
 }
