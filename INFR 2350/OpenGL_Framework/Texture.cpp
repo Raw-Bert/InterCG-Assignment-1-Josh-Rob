@@ -1,12 +1,14 @@
 #include "Texture.h"
 #include <gmtk/gmtk.h>
 #include "SOIL/SOIL.h"
+#include <vector>
 #include "IO.h"
-
+#include <fstream>
+#include <math.h>
 std::string Texture::_TextureDirectory = "../assets/textures/";
 std::string Texture::_TextureCubeDirectory = _TextureDirectory + "cubemap/";
 
-float Texture::anisotropyAmount = 16.0f; 
+float Texture::anisotropyAmount = 16.0f;
 
 GLenum filterModes[] =
 {
@@ -17,6 +19,13 @@ GLenum filterModes[] =
 	GL_NEAREST_MIPMAP_LINEAR,
 	GL_LINEAR_MIPMAP_LINEAR
 };
+
+struct RGB
+{
+	int r, g, b;
+
+};
+
 
 Texture::Texture(const std::string & file, bool mipmap)
 {
@@ -40,10 +49,10 @@ bool Texture::load(const std::string & file, bool mipmap)
 		SAT_DEBUG_LOG_ERROR("TEXTURE BROKE: %s", this->filename.c_str());
 		return false;
 	}
-	
+
 	// If the texture is 2D, set it to be a 2D texture;
 	_Target = GL_TEXTURE_2D;
-	_InternalFormat = GL_RGBA8;	
+	_InternalFormat = GL_RGBA8;
 
 	int levels = countMipMapLevels(mipmap);
 
@@ -70,6 +79,31 @@ bool Texture::load(const std::string & file, bool mipmap)
 	SOIL_free_image_data(textureData);
 	return true;
 }
+
+bool Texture::loadLUT(const std::string file)
+{
+	std::vector<RGB> LUT;
+	std::string LUTPath = ("../assets/CUBE/" + file);
+	std::ifstream LUTfile(LUTPath.c_str());
+	int LUTSize;
+
+	while (!LUTfile.eof())
+	{
+		std::string LUTline;
+		std::getline(LUTfile, LUTline);
+
+		if (LUTline.empty()) continue;
+
+		RGB line;
+		if (sscanf(LUTline.c_str(), "%f %f %f", &line.r, &line.g, &line.b) == 3) LUT.push_back(line);
+			
+	}
+
+	return true; 
+}
+
+
+
 
 bool Texture::unload()
 {

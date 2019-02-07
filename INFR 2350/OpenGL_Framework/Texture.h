@@ -87,6 +87,7 @@ public:
 	// Loads the texture
 	bool load(const std::string &file, bool mipmap = true);
 	// Unloads the texture
+	bool loadLUT(const std::string file);
 	bool unload();
 
 	// Description:
