@@ -44,6 +44,9 @@ void Game::initializeGame()
 	framebufferTV.init(128, 128);
 
 	meshStan.LoadFromObj("stan_big.obj");
+	
+	meshTree.LoadFromObj("DiedTree/tree.obj");
+
 	meshSphere.initMeshSphere(32U, 32U);
 	meshSkybox.initMeshSphere(32U, 32U, true);
 	meshLight.initMeshSphere(6U, 6U);
@@ -95,6 +98,8 @@ void Game::initializeGame()
 	Texture* texStanAlbedo = new Texture("stan_tex.png");
 	Texture* texStanEmissive = new Texture("stan_emit.png");
 
+	Texture* texTree = new Texture("TreeAlbedo.png");
+
 	textureToonRamp.push_back(new Texture("TF2.JPG", false));
 	textureToonRamp[0]->setWrapParameters(GL_CLAMP_TO_EDGE);
 	textureToonRamp[0]->sendTexParameters();
@@ -121,6 +126,10 @@ void Game::initializeGame()
 	goSaturn = GameObject(&meshSphere, texSaturn);
 	goSaturnRings = GameObject(&meshPlane, texSaturnRings);
 	//goTV = GameObject(&meshPlane, texTV);
+	goTree = GameObject(&meshTree, texTree);
+	goTree2 = GameObject(&meshTree, texTree);
+	goTree3 = GameObject(&meshTree, texTree);
+	goTree4 = GameObject(&meshTree, texTree);
 
 	std::vector<std::string> skyboxTex;
 	skyboxTex.push_back("sky2/sky_c00.bmp");
@@ -145,22 +154,35 @@ void Game::initializeGame()
 	ResourceManager::addEntity(&goSaturnRings);
 	ResourceManager::addEntity(&camera);
 	ResourceManager::addEntity(&camera2);
+
+	ResourceManager::addEntity(&goTree);
+	ResourceManager::addEntity(&goTree2);
+	ResourceManager::addEntity(&goTree3);
+	ResourceManager::addEntity(&goTree4);
 	//ResourceManager::addEntity(&goTV);	
 
 	//goLight.setShaderProgram(&shaderPointLight);
 	//goLight.setMesh(&meshSphere);
 	//goLight.setTextures(gbuffer.textures);
 
-	goStan.setLocalPos(vec3(-4.0f, 10.0f, 0.0f));
+	goStan.setLocalPos(vec3(1.0f, -2.0f, -4.0f)), goStan.setLocalRot(vec3{ 0,0,180 });
 	goSun.setLocalPos(vec3(4, 5, 0));
 	goEarth.setLocalPos(vec3(-2, 0, 0));
 	goEarthPlane.setLocalPos(vec3(0, -5.0f, -50));
 	//goMoon.setLocalPos(vec3(-1, 0, -1));
-	goJupiter.setLocalPos(vec3(-3, 0, 4));
+	goJupiter.setLocalPos(vec3(-5, 0, 2));
 	//goJupiterMoon[0].setLocalPos(vec3(-4, 0, 5));
 	//goJupiterMoon[1].setLocalPos(vec3(-2, 0, 3));
-	goSaturn.setLocalPos(vec3(-2, 0, -3));
-	goSaturnRings.setLocalPos(vec3(-2, 0, -3));
+	goSaturn.setLocalPos(vec3(0, 0, -6));
+	goSaturnRings.setLocalPos(vec3(0, 0, -6));
+	goTree.setLocalPos(vec3(9,-3,-7));
+	goTree2.setLocalPos(vec3(-9, -3, -6));
+	goTree3.setLocalPos(vec3(8, -3, -15));
+	goTree4.setLocalPos(vec3(-8, -3, -19));
+	goTree.setShaderProgram(&shaderTexture);
+	goTree2.setShaderProgram(&shaderTexture);
+	goTree3.setShaderProgram(&shaderTexture);
+	goTree4.setShaderProgram(&shaderTexture);
 
 	std::uniform_real_distribution<float> randomPositionX(-100.0f, 100.0f);
 	std::uniform_real_distribution<float> randomPositionY(-100.0f, 100.0f);
@@ -180,7 +202,7 @@ void Game::initializeGame()
 	//	goPlanets.push_back(object);
 	//
 
-	goStan.setScale(2.0f);
+	goStan.setScale(2.0f); 
 	goSun.setScale(1.50f);
 	goEarth.setScale(0.50f);
 	goEarthPlane.setScale(100.50f);
@@ -391,7 +413,7 @@ void Game::GUI()
 	}
 	if (ImGui::SliderInt("Toon Ramp Selection", &activeToonRamp, 0, (int)textureToonRamp.size() - 1))
 	{
-		//activeToonRamp = clamp(activeToonRamp, 0, (int)textureToonRamp.size() - 1);
+		activeToonRamp = clamp(activeToonRamp, 0, (int)textureToonRamp.size() - 1);
 	}
 
 	static vec3 lightPosition = goSun.getLocalPos();

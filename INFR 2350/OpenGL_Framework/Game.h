@@ -69,6 +69,12 @@ private:
 	Mesh meshCube;
 	Mesh meshStan;
 
+	Mesh meshTree;
+	Mesh meshMissile;
+	Mesh meshStreetLight;
+	Mesh meshSign;
+	Mesh meshBuilding;
+
 	GameObject goStan;
 	GameObject goSun;
 	GameObject goEarth;
@@ -80,6 +86,11 @@ private:
 	GameObject goSaturnRings;
 	GameObject goSkybox;
 	//GameObject goTV;
+
+	GameObject goTree;
+	GameObject goTree2;
+	GameObject goTree3;
+	GameObject goTree4;
 
 	GameObject goLight;
 
