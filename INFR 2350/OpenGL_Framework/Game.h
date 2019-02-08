@@ -99,6 +99,8 @@ private:
 	ShaderProgram shaderGrayscale;
 	ShaderProgram shaderGrading;
 
+	ShaderProgram rimLighting;
+
 	UniformBuffer uniformBufferTime;
 	UniformBuffer uniformBufferLightScene;
 	UniformBuffer uniformBufferLight;

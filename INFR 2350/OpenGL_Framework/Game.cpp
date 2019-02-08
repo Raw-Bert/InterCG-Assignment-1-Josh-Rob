@@ -50,13 +50,15 @@ void Game::initializeGame()
 	meshPlane.initMeshPlane(32U, 32U);
 	
 	shaderBasic.load("shader.vert", "shader.frag");
-	shaderTexture.load("shader.vert", "shaderTexture.frag");
+	//shaderTexture.load("shader.vert", "shaderTexture.frag");
+	shaderTexture.load("shaderRim.vert", "shaderTextureRim.frag");
 	shaderTextureJupiter.load("shader.vert", "shaderTextureJupiter.frag");
 	shaderTextureAlphaDiscard.load("shader.vert", "shaderTextureAlphaDiscard.frag");
 	shaderSky.load("shaderSky.vert", "shaderSky.frag");
 	shaderPassthrough.load("PassThrough.vert", "PassThrough.frag");
 	shaderGrayscale.load("PassThrough.vert", "Post/GreyscalePost.frag");
-	shaderGrading.load("LUTShader.vert", "Post/ColorGradingPost.frag");
+	//shaderGrading.load("LUTShader.vert", "Post/ColorGradingPost.frag");
+	rimLighting.load("shaderRim.vert","shaderTextureRim.frag");
 
 	ResourceManager::Shaders.push_back(&shaderBasic);
 	ResourceManager::Shaders.push_back(&shaderTexture);
